@@ -52,17 +52,24 @@ include(CMakePackageConfigHelpers)
 target_sources(${PROJECT_NAME}
     PRIVATE
         src/unity.c
+        extras/fixture/src/unity_fixture.c
+        extras/memory/src/unity_memory.c
 )
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extras/fixture/src>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extras/memory/src>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>
 )
 
 set(${PROJECT_NAME}_PUBLIC_HEADERS src/unity.h
                                    src/unity_internals.h
+                                   extras/fixture/src/unity_fixture.h
+                                   extras/fixture/src/unity_fixture_internals.h
+                                   extras/memory/src/unity_memory.h
 )
 
 set_target_properties(${PROJECT_NAME}
